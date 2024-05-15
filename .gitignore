@@ -1,0 +1,15 @@
+.docker
+.env
+/data
+.local
+.dotnet
+.nuget
+.templateengine
+.bash_history
+.fake
+/obj
+.cache
+.ServiceHub
+.vscode
+.vscode-server
+.gitconfig
