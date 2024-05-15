@@ -7,9 +7,10 @@
 .templateengine
 .bash_history
 .fake
-/obj
 .cache
 .ServiceHub
 .vscode
 .vscode-server
 .gitconfig
+/bin
+/obj
