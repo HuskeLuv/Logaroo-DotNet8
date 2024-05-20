@@ -45,7 +45,6 @@ namespace app.Mappers
             postModel.Content = postDTO.Content;
             postModel.Updated_At = DateTime.Now;
 
-            // Atualize as tags
             postModel.PostTags.Clear();
             foreach (var tagName in postDTO.Tags)
             {
