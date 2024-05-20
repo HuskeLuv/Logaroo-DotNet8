@@ -37,5 +37,21 @@ namespace app.Mappers
                 }).ToList()
             };
         }
+
+        public static void UpdatePostFromDTO(this Post postModel, UpdatePostRequestDTO postDTO, List<Tag> existingTags)
+        {
+            postModel.Title = postDTO.Title;
+            postModel.Author = postDTO.Author;
+            postModel.Content = postDTO.Content;
+            postModel.Updated_At = DateTime.Now;
+
+            // Atualize as tags
+            postModel.PostTags.Clear();
+            foreach (var tagName in postDTO.Tags)
+            {
+                var tag = existingTags.FirstOrDefault(t => t.Name == tagName) ?? new Tag { Name = tagName };
+                postModel.PostTags.Add(new PostTag { PostId = postModel.Id, Tag = tag });
+            }
+        }
     }
 }

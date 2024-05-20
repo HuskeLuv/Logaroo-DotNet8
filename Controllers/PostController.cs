@@ -31,16 +31,18 @@ namespace post.Controllers
 
             var postDTOs = posts.ToList().Select(p => p.ToPostDTO()).ToList();
 
-            return Ok(postDTOs);;
+            return Ok(postDTOs); ;
         }
 
         [HttpGet("{id}"), Authorize]
-        public IActionResult GetById([FromRoute] int id){
+        public IActionResult GetById([FromRoute] int id)
+        {
             var post = _context.Posts
                 .Include(p => p.PostTags)
                 .ThenInclude(pt => pt.Tag)
                 .FirstOrDefault(p => p.Id == id);
-            if (post == null){
+            if (post == null)
+            {
                 return NotFound();
             }
             return Ok(post.ToPostDTO());
@@ -55,6 +57,42 @@ namespace post.Controllers
             _context.SaveChanges();
 
             return CreatedAtAction(nameof(GetById), new { id = postModel.Id }, postModel.ToPostDTO());
+        }
+
+        [HttpPut, Authorize]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id, [FromBody] UpdatePostRequestDTO updateDTO)
+        {
+            var postModel = _context.Posts.Include(p => p.PostTags).ThenInclude(pt => pt.Tag).FirstOrDefault(p => p.Id == id);
+            var existingTags = _context.Tags.ToList();
+
+            if (postModel == null)
+            {
+                return NotFound();
+            }
+            postModel.UpdatePostFromDTO(updateDTO, existingTags);
+
+            _context.Posts.Update(postModel);
+            _context.SaveChanges();
+
+            return Ok(postModel.ToPostDTO());
+        }
+
+        [HttpDelete, Authorize]
+        [Route("{id}")]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            var postModel = _context.Posts.FirstOrDefault(p => p.Id == id);
+
+            if (postModel == null)
+            {
+                return NotFound();
+            }
+
+            _context.Posts.Remove(postModel);
+            _context.SaveChanges();
+
+            return NoContent();
         }
     }
 }
