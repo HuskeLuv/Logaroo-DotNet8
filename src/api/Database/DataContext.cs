@@ -29,7 +29,7 @@ namespace app.Database
 
             modelBuilder.Entity<PostTag>()
                 .HasOne(pt => pt.Tag)
-                .WithMany(t => t.postTags)
+                .WithMany(t => t.PostTags)
                 .HasForeignKey(pt => pt.TagId);
 
             // Optionally configure cascading deletes or other properties here

@@ -1,6 +1,5 @@
 .docker
 .env
-/data
 .local
 .dotnet
 .nuget
@@ -12,5 +11,10 @@
 .vscode
 .vscode-server
 .gitconfig
-/bin
-/obj
+/data
+/src/api/data
+bin/
+obj
+/src/api/obj
+/src/api/bin
+/src/test/obj
