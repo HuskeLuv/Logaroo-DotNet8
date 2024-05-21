@@ -8,7 +8,7 @@ namespace post.Models
         public string Title { get; set; } = string.Empty;
         public string Author { get; set; } = string.Empty;
         public string Content { get; set; } = string.Empty;
-        public ICollection<PostTag> PostTags { get; set; }
+        public List<PostTag> PostTags { get; set; } = new List<PostTag>();
         public DateTime Created_At { get; set; } = DateTime.Now;
         public DateTime Updated_At { get; set; } = DateTime.Now;
     }

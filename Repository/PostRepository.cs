@@ -27,7 +27,7 @@ namespace app.Repository
 
             return await posts.ToListAsync();
         }
-        public async Task<Post> GetByIdAsync(int id)
+        public async Task<Post?> GetByIdAsync(int id)
         {
             return await _context.Posts
                 .Include(p => p.PostTags)

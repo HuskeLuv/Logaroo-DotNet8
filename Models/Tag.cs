@@ -5,6 +5,6 @@ namespace app.Models
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public ICollection<PostTag> postTags { get; set; }
+        public List<PostTag> PostTags { get; set; } = new List<PostTag>();
     }
 }
