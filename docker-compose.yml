@@ -9,7 +9,7 @@ services:
     ports:
       - "5000:5000"
       - "5001:5001"
-    command: dotnet watch run --urls http://0.0.0.0:5000
+    command: sh -c "cd src/api && dotnet watch run --urls http://0.0.0.0:5000"
     volumes:
       - .:/app
     networks:
