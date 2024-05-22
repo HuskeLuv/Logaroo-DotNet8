@@ -56,7 +56,7 @@ namespace post.Controllers
             }
             var existingTags = await _postRepository.GetAllTagsAsync();
             var postModel = postDTO.ToPostFromCreateDTO(existingTags);
-            await _postRepository.AddAsync(postModel);
+            await _postRepository.CreateAsync(postModel);
 
             return CreatedAtAction(nameof(GetById), new { id = postModel.Id }, postModel.ToPostDTO());
         }

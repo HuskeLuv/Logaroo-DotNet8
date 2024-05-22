@@ -35,7 +35,7 @@ namespace app.Repository
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task AddAsync(Post post)
+        public async Task CreateAsync(Post post)
         {
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
